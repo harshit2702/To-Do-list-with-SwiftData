@@ -9,19 +9,25 @@
 /* Begin PBXBuildFile section */
 		B12DE4662B333F590007AF76 /* To_Do_list_with_SwiftDataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DE4652B333F590007AF76 /* To_Do_list_with_SwiftDataApp.swift */; };
 		B12DE4682B333F590007AF76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DE4672B333F590007AF76 /* ContentView.swift */; };
-		B12DE46A2B333F590007AF76 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DE4692B333F590007AF76 /* Item.swift */; };
+		B12DE46A2B333F590007AF76 /* newLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DE4692B333F590007AF76 /* newLists.swift */; };
 		B12DE46C2B333F5C0007AF76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B12DE46B2B333F5C0007AF76 /* Assets.xcassets */; };
 		B12DE4702B333F5C0007AF76 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B12DE46F2B333F5C0007AF76 /* Preview Assets.xcassets */; };
+		B12DE4772B334C550007AF76 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DE4762B334C550007AF76 /* EditView.swift */; };
+		B1B539712B344AF4008402D4 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B539702B344AF4008402D4 /* ListView.swift */; };
+		B1B539732B347A2C008402D4 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B539722B347A2C008402D4 /* LocalNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B12DE4622B333F590007AF76 /* To Do list with SwiftData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "To Do list with SwiftData.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12DE4652B333F590007AF76 /* To_Do_list_with_SwiftDataApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = To_Do_list_with_SwiftDataApp.swift; sourceTree = "<group>"; };
 		B12DE4672B333F590007AF76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B12DE4692B333F590007AF76 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		B12DE4692B333F590007AF76 /* newLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newLists.swift; sourceTree = "<group>"; };
 		B12DE46B2B333F5C0007AF76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B12DE46D2B333F5C0007AF76 /* To_Do_list_with_SwiftData.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = To_Do_list_with_SwiftData.entitlements; sourceTree = "<group>"; };
 		B12DE46F2B333F5C0007AF76 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B12DE4762B334C550007AF76 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		B1B539702B344AF4008402D4 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		B1B539722B347A2C008402D4 /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +62,10 @@
 			children = (
 				B12DE4652B333F590007AF76 /* To_Do_list_with_SwiftDataApp.swift */,
 				B12DE4672B333F590007AF76 /* ContentView.swift */,
-				B12DE4692B333F590007AF76 /* Item.swift */,
+				B1B539702B344AF4008402D4 /* ListView.swift */,
+				B12DE4762B334C550007AF76 /* EditView.swift */,
+				B12DE4692B333F590007AF76 /* newLists.swift */,
+				B1B539722B347A2C008402D4 /* LocalNotification.swift */,
 				B12DE46B2B333F5C0007AF76 /* Assets.xcassets */,
 				B12DE46D2B333F5C0007AF76 /* To_Do_list_with_SwiftData.entitlements */,
 				B12DE46E2B333F5C0007AF76 /* Preview Content */,
@@ -143,7 +152,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12DE4682B333F590007AF76 /* ContentView.swift in Sources */,
-				B12DE46A2B333F590007AF76 /* Item.swift in Sources */,
+				B12DE46A2B333F590007AF76 /* newLists.swift in Sources */,
+				B1B539712B344AF4008402D4 /* ListView.swift in Sources */,
+				B12DE4772B334C550007AF76 /* EditView.swift in Sources */,
+				B1B539732B347A2C008402D4 /* LocalNotification.swift in Sources */,
 				B12DE4662B333F590007AF76 /* To_Do_list_with_SwiftDataApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,6 +215,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -258,6 +271,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -278,6 +292,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock Private Item List";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -316,6 +331,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock Private Item List";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
