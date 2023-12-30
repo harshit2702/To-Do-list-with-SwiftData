@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import LocalAuthentication
+import PencilKit
 
 struct ContentView: View {
     @Environment(\.modelContext)  var modelContext
@@ -19,6 +20,7 @@ struct ContentView: View {
     @State private var isUnlocked = false
     @State private var showingAlert = false
     @State private var showPendingNotification = false
+    @State private var showCanvas = false
     @State private var isActivateDeleteAll = false
     
     @State private var sortByNameCount = 0
@@ -40,27 +42,44 @@ struct ContentView: View {
                 }
                 
                 VStack{
-//                    NavigationLink(destination: LocalNotification(), isActive: $showPendingNotification) {
-//                        EmptyView()
-//                    }
-//                    .hidden()
+                    NavigationLink(destination: LocalNotification(), isActive: $showPendingNotification) {
+                        EmptyView()
+                    }
+                    .hidden()
+                    NavigationLink(destination: Canvas(item: newLists(name: "Sketch \(Date.now.formatted(date: .abbreviated, time: .shortened)) ",drawingData: PKDrawing().dataRepresentation())), isActive: $showCanvas) {
+                        EmptyView()
+                    }
+                    .hidden()
                     Spacer()
                     HStack{
-                        TextField("New Item", text: $itemName)
+                        HStack{
+                            TextField("New Item", text: $itemName)
+                                .padding()
+                            Button{
+                                addItem()
+                            }label:{
+                                Image(systemName: "plus")
+                            }
                             .padding()
-                        Button{
-                            addItem()
-                        }label:{
-                            Image(systemName: "plus")
+                            .font(.title)
                         }
-                        .padding()
-                        .font(.title)
+                        .font(.callout)
+                        .background(.yellow)
+                        .clipShape(RoundedRectangle(cornerRadius: 30.0))
+                        if itemName == "" {
+                            Button{
+                                showCanvas = true
+                            }label:{
+                                Image(systemName: "pencil.and.scribble")
+                            }
+                            .frame(minWidth: 50,minHeight: 50)
+                            .font(.title)
+                            .background(.yellow)
+                            .clipShape(Circle())
+                        }
                     }
-                    .font(.callout)
-                    .background(.yellow)
-                    .clipShape(RoundedRectangle(cornerRadius: 30.0))
                     .padding()
-                    
+
                 }
             }
             .navigationTitle("To-Do List")
@@ -172,7 +191,7 @@ struct ContentView: View {
     
      func addItem() {
          if itemName != "" {
-             let newItem = newLists(name: itemName)
+             let newItem = newLists(name: itemName, drawingData: PKDrawing().dataRepresentation())
              modelContext.insert(newItem)
              itemName = ""
          }

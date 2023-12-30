@@ -7,45 +7,103 @@
 
 import SwiftUI
 import SwiftData
+import PencilKit
+
+struct canvasView: View{
+    @State  var item: newLists
+    @State private var drawing = PKDrawing()
+    
+    @Environment(\.modelContext) var modelContext
+
+    var body: some View{
+        NavigationView{
+            VStack{
+                PKCanvasViewWrapper(drawing: $drawing, showToolPicker: .constant(true), saveAction: saveDrawing)//savedrawing should be of type (PKDrawing) -> Void
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.white)
+            }
+        }
+        .onAppear{
+            load()
+        }
+    }
+    
+    func load(){
+        // Load drawing logic
+        if let data = item.drawingData as Data? {
+            do {
+                print(data)
+                let loadedDrawing = try PKDrawing(data: data)
+                drawing = loadedDrawing
+                print(drawing)
+            } catch {
+                print("Error loading drawing: \(error)")
+                // Handle the error or provide a fallback solution
+            }
+        } else {
+            drawing = PKDrawing()
+        }
+    }
+    func saveDrawing(drawing: PKDrawing) {
+        if let data =  drawing.dataRepresentation() as Data? {
+            item.drawingData = data
+            try! modelContext.save()
+        }
+    }
+}
 
 struct EditView: View {
     @Bindable var item: newLists
-    
+    @State private var showCanvasView = false
+
     var title: String{
         return (item.name == "") ? "Add View" : "Edit View"
     }
     
     var body: some View {
-        Form{
-            TextField("Item Name", text: $item.name)
-
-            Toggle("Private it", isOn: $item.isPrivate)
-                .toggleStyle(SwitchToggleStyle(tint: .blue))
-            Toggle("Add Reminder", isOn: $item.toRemind)
-                .toggleStyle(SwitchToggleStyle(tint: .blue))
-
-            if item.toRemind {
-                DatePicker("Remind me on", selection: $item.remindDate, displayedComponents: [.date,.hourAndMinute])
-                .font(.callout)
+        VStack{
+            NavigationLink(destination: canvasView(item: item), isActive: $showCanvasView) {
+                EmptyView()
+            }
+            .hidden()
+            Form{
+                TextField("Item Name", text: $item.name)
                 
-                Button("Remind me"){
-                    activateReminder(item.remindDate, item.name, item.details, item.id)
-                    //To Make Change For Private Items
+                Toggle("Private it", isOn: $item.isPrivate)
+                    .toggleStyle(SwitchToggleStyle(tint: .blue))
+                Toggle("Add Reminder", isOn: $item.toRemind)
+                    .toggleStyle(SwitchToggleStyle(tint: .blue))
+                
+                if item.toRemind {
+                    DatePicker("Remind me on", selection: $item.remindDate, displayedComponents: [.date,.hourAndMinute])
+                        .font(.callout)
                     
+                    Button("Remind me"){
+                        activateReminder(item.remindDate, item.name, item.details, item.id)
+                        //To Make Change For Private Items
+                        
+                    }
                 }
+                
+                
+                
+                Section("Additional Notes"){
+                    TextField("Note" , text: $item.details, axis: .vertical)
+                        .font(.callout)
+                }
+                
+                
             }
-            
-            
-            
-            Section("Additional Notes"){
-                TextField("Note" , text: $item.details, axis: .vertical)
-                    .font(.callout)
-            }
-
-            
         }
         .navigationTitle("\(title)")
         .colorMultiply(Color(red: 247/255, green: 243/255, blue: 176/255))
+        .toolbar{
+            Button{
+                showCanvasView = true
+            }label: {
+                Image(systemName: "pencil.and.scribble")
+            }
+    }
         .foregroundColor(.black)
 
 //        .navigationBarTitleDisplayMode(.inline)
@@ -64,7 +122,7 @@ struct EditView: View {
         ])
         let Configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
         let Container = try ModelContainer(for: schema, configurations: [Configuration])
-        let example = newLists(name: "Example",details: "This is the place to add note about the above items ", isPrivate: false, addDate: Date.now, toRemind: false, remindDate: Date.now)
+        let example = newLists(name: "Example",details: "This is the place to add note about the above items ", drawingData: PKDrawing().dataRepresentation(), isPrivate: false, addDate: Date.now, toRemind: false, remindDate: Date.now)
         
         return EditView(item: example)
             .modelContainer(Container)

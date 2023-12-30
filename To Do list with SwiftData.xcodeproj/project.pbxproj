@@ -15,6 +15,8 @@
 		B12DE4772B334C550007AF76 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DE4762B334C550007AF76 /* EditView.swift */; };
 		B1B539712B344AF4008402D4 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B539702B344AF4008402D4 /* ListView.swift */; };
 		B1B539732B347A2C008402D4 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B539722B347A2C008402D4 /* LocalNotification.swift */; };
+		B1BB0BC62B3FCA4D0093D22B /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB0BC52B3FCA4D0093D22B /* Canvas.swift */; };
+		B1BB0BC82B3FCB090093D22B /* PKCanvasViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB0BC72B3FCB090093D22B /* PKCanvasViewWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		B12DE4762B334C550007AF76 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		B1B539702B344AF4008402D4 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		B1B539722B347A2C008402D4 /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
+		B1BB0BC52B3FCA4D0093D22B /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		B1BB0BC72B3FCB090093D22B /* PKCanvasViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCanvasViewWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				B12DE4672B333F590007AF76 /* ContentView.swift */,
 				B1B539702B344AF4008402D4 /* ListView.swift */,
 				B12DE4762B334C550007AF76 /* EditView.swift */,
+				B1BB0BC52B3FCA4D0093D22B /* Canvas.swift */,
+				B1BB0BC72B3FCB090093D22B /* PKCanvasViewWrapper.swift */,
 				B12DE4692B333F590007AF76 /* newLists.swift */,
 				B1B539722B347A2C008402D4 /* LocalNotification.swift */,
 				B12DE46B2B333F5C0007AF76 /* Assets.xcassets */,
@@ -151,12 +157,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1BB0BC62B3FCA4D0093D22B /* Canvas.swift in Sources */,
 				B12DE4682B333F590007AF76 /* ContentView.swift in Sources */,
 				B12DE46A2B333F590007AF76 /* newLists.swift in Sources */,
 				B1B539712B344AF4008402D4 /* ListView.swift in Sources */,
 				B12DE4772B334C550007AF76 /* EditView.swift in Sources */,
 				B1B539732B347A2C008402D4 /* LocalNotification.swift in Sources */,
 				B12DE4662B333F590007AF76 /* To_Do_list_with_SwiftDataApp.swift in Sources */,
+				B1BB0BC82B3FCB090093D22B /* PKCanvasViewWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
