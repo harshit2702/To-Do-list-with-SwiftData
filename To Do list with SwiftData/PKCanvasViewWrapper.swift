@@ -37,9 +37,11 @@ struct PKCanvasViewWrapper: UIViewRepresentable {
         Coordinator(self)
     }
 
+    
     class Coordinator: NSObject, PKCanvasViewDelegate, PKToolPickerObserver, UIPencilInteractionDelegate {
         let parent: PKCanvasViewWrapper
         let toolPicker = PKToolPicker()
+        var previousTool: PKTool?
 
         init(_ canvasViewWrapper: PKCanvasViewWrapper) {
             self.parent = canvasViewWrapper
@@ -66,6 +68,26 @@ struct PKCanvasViewWrapper: UIViewRepresentable {
             parent.canvasView.addInteraction(pencilInteraction)
         }
         
+        private func makeInkingTool() -> PKInkingTool {
+            return PKInkingTool(.pen, color: .black, width: 10)
+        }
+        
+        private func makeEraserTool() -> PKEraserTool {
+            let eraserTool = PKEraserTool(.bitmap)
+            eraserTool.delegate = self
+            return eraserTool
+        }
+    }
+
+    extension Coordinator: PKEraserToolDelegate {
+        func eraserToolDidEndUsingTool(_ eraserTool: PKEraserTool) {
+            if let previousTool = previousTool {
+                parent.canvasView.tool = previousTool
+            }
+        }
+        
+        func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
+            previousTool = canvasView.tool
+        }
     }
 }
-
