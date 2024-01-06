@@ -26,13 +26,6 @@ struct AudioRecordingView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
-            print(audioData)
-
-            if isRecording {
-                FrequencyGraphView(audioData: audioData)
-                    .frame(height: 200)
-                    .padding()
-            }
             Button(action: {
                 if isPlaying {
                     stopPlayback()
@@ -66,11 +59,9 @@ struct AudioRecordingView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
             
-            if isRecording {
-                FrequencyGraphView(audioData: audioData)
-                    .frame(height: 200)
-                    .padding()
-            }
+            FrequencyGraphView(audioData: audioData)
+                .frame(height: 200)
+                .padding()
         }
     }
     
@@ -86,7 +77,7 @@ struct AudioRecordingView: View {
 
         do {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-            audioRecorder?.delegate = self
+            
             audioRecorder?.record()
             isRecording = true
         } catch {
@@ -96,6 +87,9 @@ struct AudioRecordingView: View {
     
     func stopRecording() {
         audioRecorder?.stop()
+        if let audioRecorder = audioRecorder {
+            audioRecorderDidFinishRecording(audioRecorder, successfully: true)
+        }
         audioRecorder = nil
         isRecording = false
     }
@@ -146,11 +140,9 @@ struct AudioRecordingView: View {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-}
-
-extension AudioRecordingView: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if flag {
+    if flag {
+        DispatchQueue.global(qos: .userInitiated).async {
             do {
                 let audioFile = try AVAudioFile(forReading: recorder.url)
                 let audioFormat = audioFile.processingFormat
@@ -163,25 +155,35 @@ extension AudioRecordingView: AVAudioRecorderDelegate {
                 let frameLength = Int(audioBuffer!.frameLength)
                 
                 var audioData: [Float] = []
+                audioData.reserveCapacity(frameLength * channelCount)
+                
                 for frame in 0..<frameLength {
                     var channelData: [Float] = []
+                    channelData.reserveCapacity(channelCount)
+                    
                     for channel in 0..<channelCount {
                         let sample = floatChannelData[channel][frame]
                         channelData.append(sample)
                     }
+                    
                     audioData.append(contentsOf: channelData)
                 }
                 
-                self.audioData = audioData
+                DispatchQueue.main.async {
+                    self.audioData = audioData
+                    print("Audio data: \(audioData)")
+                }
             } catch {
                 print("Failed to read audio file: \(error.localizedDescription)")
             }
         }
     }
 }
+}
+
 
 struct FrequencyGraphView: View {
-    let audioData: [Float]
+    @State private var audioData: [Float]
     
     var body: some View {
         GeometryReader { geometry in
@@ -202,6 +204,7 @@ struct FrequencyGraphView: View {
             }
             .stroke(Color.blue, lineWidth: 2)
         }
+        .background(Color.yellow)
     }
 }
 
@@ -210,3 +213,4 @@ struct AudioRecordingView_Previews: PreviewProvider {
         AudioRecordingView()
     }
 }
+
