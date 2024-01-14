@@ -12,15 +12,19 @@ import PencilKit
 struct canvasView: View{
     @State  var item: newLists
     @State private var drawing = PKDrawing()
+    @State private var showToolPicker = true
     
     @Environment(\.modelContext) var modelContext
 
     var body: some View{
         NavigationView{
             VStack{
-                PKCanvasViewWrapper(drawing: $drawing, showToolPicker: .constant(true), saveAction: saveDrawing)//savedrawing should be of type (PKDrawing) -> Void
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                PKCanvasViewWrapper(drawing: $drawing, showToolPicker: $showToolPicker, saveAction: saveDrawing)
+                    .edgesIgnoringSafeArea(.all) // Add this line to make it fullscreen
                     .background(Color.white)
+                    .onTapGesture {
+                        showToolPicker.toggle()
+                    }
             }
         }
         .onAppear{

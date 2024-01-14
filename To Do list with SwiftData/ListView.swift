@@ -24,7 +24,7 @@ struct ListView: View {
                         HStack{
                             VStack(alignment: .leading){
                                 Text(item.name)
-                                    .font(.title2)
+                                    .font(.title3)
                                 Text("\(item.addDate.formatted(.dateTime.month(.abbreviated).day(.twoDigits)))")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
@@ -43,6 +43,28 @@ struct ListView: View {
                 }
             }
             .onDelete(perform: deleteItems)
+            .swipeActions(edge: .leading) {
+                                        Button {
+                                           print("Add")
+                                        } label: {
+                                            Label("Add ", systemImage: "clock.fill")
+                                        }
+                                        .tint(.indigo)
+                                    }
+//            .swipeActions(allowsFullSwipe: false) {
+//                                        Button {
+//                                            print("Muting conversation")
+//                                        } label: {
+//                                            Label("Mute", systemImage: "bell.slash.fill")
+//                                        }
+//                                        .tint(.indigo)
+//
+//                                        Button(role: .destructive) {
+//                                            print("Deleting conversation")
+//                                        } label: {
+//                                            Label("Delete", systemImage: "trash.fill")
+//                                        }
+//                                    }
         }
         .onChange(of: isActivateDeleteAll) {
             deleteAll()

@@ -13,6 +13,7 @@ struct To_Do_list_with_SwiftDataApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             newLists.self,
+            archieve.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

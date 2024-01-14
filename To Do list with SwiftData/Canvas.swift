@@ -14,6 +14,7 @@ struct Canvas: View {
     @State private var drawing = PKDrawing()
     @State private var drawingData: Data?
     @State private var showEditView = false
+    @State private var showToolPicker = true
     @State private var count = 0
 
     @State var item: newLists
@@ -24,9 +25,12 @@ struct Canvas: View {
                 EmptyView()
             }
             .hidden()
-            PKCanvasViewWrapper(drawing: $drawing, showToolPicker: .constant(true), saveAction: saveDrawing)//savedrawing should be of type (PKDrawing) -> Void
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            PKCanvasViewWrapper(drawing: $drawing, showToolPicker: $showToolPicker, saveAction: saveDrawing)//savedrawing should be of type (PKDrawing) -> Void
+                .edgesIgnoringSafeArea(.all)
                 .background(Color.white)
+                .onTapGesture {
+                    showToolPicker.toggle()
+                }
                 .navigationBarTitle("Scratch Pad", displayMode: .inline)
             
                 .toolbar{

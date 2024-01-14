@@ -33,3 +33,25 @@ class newLists: Identifiable {
     
     
 }
+
+@Model
+class archieve: Identifiable{
+    var id: UUID
+    var name: String
+    var details: String
+    var drawingData: Data?
+    var isPrivate: Bool
+    var addDate: Date
+    var archievingDate: Date
+    
+    init(id: UUID = UUID(), name: String = "", details: String = "", drawingData: Data? = nil, isPrivate: Bool = false, addDate: Date = Date.now, archievingDate: Date = Date.now) {
+        self.id = id
+        self.name = name
+        self.details = details
+        self.drawingData = drawingData
+        self.isPrivate = isPrivate
+        self.addDate = addDate
+        self.archievingDate = archievingDate
+    }
+    
+}

@@ -61,7 +61,7 @@ struct ContentView: View {
                                 Image(systemName: "plus")
                             }
                             .padding()
-                            .font(.title)
+                            .font(.title3)
                         }
                         .font(.callout)
                         .background(.yellow)
@@ -73,7 +73,7 @@ struct ContentView: View {
                                 Image(systemName: "pencil.and.scribble")
                             }
                             .frame(minWidth: 50,minHeight: 50)
-                            .font(.title)
+                            .font(.title3)
                             .background(.yellow)
                             .clipShape(Circle())
                         }
