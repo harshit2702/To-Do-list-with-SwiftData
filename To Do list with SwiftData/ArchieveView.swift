@@ -40,6 +40,12 @@ struct ArchieveView: View {
             .onDelete(perform: deleteItems)
         }
     }
+    
+    init(sort: SortDescriptor<archieve>) {
+        var sorts: [SortDescriptor<archieve>] = [sort]
+        _archieved = Query(sort: sorts)
+    }
+    
     func deleteItems(offsets: IndexSet) {
         var itemId = UUID()
         withAnimation {
@@ -62,5 +68,5 @@ struct ArchieveView: View {
 }
 
 #Preview {
-    ArchieveView()
+    ArchieveView(sort: SortDescriptor(\archieve.archievingDate))
 }
