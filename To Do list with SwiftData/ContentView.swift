@@ -51,7 +51,7 @@ struct ContentView: View {
                         EmptyView()
                     }
                     .hidden()
-                    NavigationLink(destination: ArchieveView() , isActive: $showArchieveView ){
+                    NavigationLink(destination: ArchieveView(sort: SortDescriptor(\archieve.archievingDate)) , isActive: $showArchieveView ){
                         EmptyView()
                     }
                     .hidden()
