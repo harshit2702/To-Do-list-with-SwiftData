@@ -102,6 +102,8 @@ struct LocalNotification: View {
     @State private var setRemindDate = Date(timeInterval: 120, since: Date.now)
     @State private var animateButton = true
     
+    @Query var items: [newLists]
+    
     @State private var pendingNotificationRequests: [UNNotificationRequest] = []
 
     var body: some View {
@@ -156,6 +158,13 @@ struct LocalNotification: View {
         let notificationManager = NotificationManager(remindDate: Date(), title: "Title", body: "body", id: UUID())
 
         for index in offsets {
+            var uuid = pendingNotificationRequests[index].identifier
+            print(uuid)
+            for itemIndex in items.indices{
+                if items[itemIndex].id.uuidString == uuid{
+                    items[itemIndex].toRemind = false
+                }
+            }
             notificationManager.cancelNotification(identifiers: [pendingNotificationRequests[index].identifier])
             
             

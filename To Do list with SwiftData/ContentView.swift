@@ -20,6 +20,7 @@ struct ContentView: View {
     @State private var isUnlocked = false
     @State private var showingAlert = false
     @State private var showPendingNotification = false
+    @State private var showArchieveView = false
     @State private var showCanvas = false
     @State private var isActivateDeleteAll = false
     
@@ -47,6 +48,10 @@ struct ContentView: View {
                     }
                     .hidden()
                     NavigationLink(destination: Canvas(item: newLists(name: "Sketch \(Date.now.formatted(date: .abbreviated, time: .shortened)) ",drawingData: PKDrawing().dataRepresentation())), isActive: $showCanvas) {
+                        EmptyView()
+                    }
+                    .hidden()
+                    NavigationLink(destination: ArchieveView() , isActive: $showArchieveView ){
                         EmptyView()
                     }
                     .hidden()
@@ -154,6 +159,11 @@ struct ContentView: View {
                                 Image(systemName: "lock.fill")
                             }
                         }
+                        
+                        Button("Archieves"){
+                            showArchieveView = true
+                        }
+                        
                         Button{
                             showingAlert = true
                         }label:{
@@ -166,6 +176,8 @@ struct ContentView: View {
                         Button("Get pendingNotifications"){
                             showPendingNotification = true
                         }
+                        
+                        
                     }label: {
                         Image(systemName: "line.3.horizontal")
                             .font(.title)

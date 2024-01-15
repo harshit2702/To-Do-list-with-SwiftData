@@ -13,6 +13,7 @@
 		B12DE46C2B333F5C0007AF76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B12DE46B2B333F5C0007AF76 /* Assets.xcassets */; };
 		B12DE4702B333F5C0007AF76 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B12DE46F2B333F5C0007AF76 /* Preview Assets.xcassets */; };
 		B12DE4772B334C550007AF76 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DE4762B334C550007AF76 /* EditView.swift */; };
+		B16A36E72B53F34F00C5D198 /* ArchieveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16A36E62B53F34F00C5D198 /* ArchieveView.swift */; };
 		B1B539712B344AF4008402D4 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B539702B344AF4008402D4 /* ListView.swift */; };
 		B1B539732B347A2C008402D4 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B539722B347A2C008402D4 /* LocalNotification.swift */; };
 		B1BB0BC62B3FCA4D0093D22B /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB0BC52B3FCA4D0093D22B /* Canvas.swift */; };
@@ -28,6 +29,7 @@
 		B12DE46D2B333F5C0007AF76 /* To_Do_list_with_SwiftData.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = To_Do_list_with_SwiftData.entitlements; sourceTree = "<group>"; };
 		B12DE46F2B333F5C0007AF76 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B12DE4762B334C550007AF76 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		B16A36E62B53F34F00C5D198 /* ArchieveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchieveView.swift; sourceTree = "<group>"; };
 		B1B539702B344AF4008402D4 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		B1B539722B347A2C008402D4 /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
 		B1BB0BC52B3FCA4D0093D22B /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				B12DE4762B334C550007AF76 /* EditView.swift */,
 				B1BB0BC52B3FCA4D0093D22B /* Canvas.swift */,
 				B1BB0BC72B3FCB090093D22B /* PKCanvasViewWrapper.swift */,
+				B16A36E62B53F34F00C5D198 /* ArchieveView.swift */,
 				B12DE4692B333F590007AF76 /* newLists.swift */,
 				B1B539722B347A2C008402D4 /* LocalNotification.swift */,
 				B12DE46B2B333F5C0007AF76 /* Assets.xcassets */,
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BB0BC62B3FCA4D0093D22B /* Canvas.swift in Sources */,
+				B16A36E72B53F34F00C5D198 /* ArchieveView.swift in Sources */,
 				B12DE4682B333F590007AF76 /* ContentView.swift in Sources */,
 				B12DE46A2B333F590007AF76 /* newLists.swift in Sources */,
 				B1B539712B344AF4008402D4 /* ListView.swift in Sources */,

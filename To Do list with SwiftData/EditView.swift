@@ -99,6 +99,19 @@ struct EditView: View {
                 
             }
         }
+        .onAppear(perform: {
+            if item.toRemind == false {
+                UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+                    print("Fetched pending notifications")
+                    for index in requests.indices {
+                        if requests[index].content.threadIdentifier == item.id.uuidString {
+                            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [requests[index].identifier])
+                            print("Cancelled notification")
+                        }
+                    }
+                }
+            }
+        })
         .navigationTitle("\(title)")
         .colorMultiply(Color(red: 247/255, green: 243/255, blue: 176/255))
         .toolbar{
@@ -113,10 +126,11 @@ struct EditView: View {
 //        .navigationBarTitleDisplayMode(.inline)
     }
     
-    func activateReminder(_ remindDate: Date,_ title: String, _ body: String, _ id: UUID){
-        NotificationManager(remindDate: remindDate, title: title, body: body, id: id).requestAuthorization()
-        NotificationManager(remindDate: remindDate, title: title, body: body, id: id).scheduleNotification()
-    }
+}
+
+func activateReminder(_ remindDate: Date,_ title: String, _ body: String, _ id: UUID){
+    NotificationManager(remindDate: remindDate, title: title, body: body, id: id).requestAuthorization()
+    NotificationManager(remindDate: remindDate, title: title, body: body, id: id).scheduleNotification()
 }
 
 #Preview {
